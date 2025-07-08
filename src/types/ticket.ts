@@ -1,4 +1,4 @@
-enum Status {
+export enum Status {
   OPEN = "OPEN",
   IN_PROGRESS = "IN_PROGRESS",
   DONE = "DONE",
@@ -6,8 +6,9 @@ enum Status {
 }
 
 export interface Ticket {
+  id?: string;
   title: string;
-  description: string;
+  description?: string;
   assignedTo?: string;
   status: Status;
 }

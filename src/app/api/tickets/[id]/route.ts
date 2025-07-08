@@ -54,12 +54,12 @@ export async function DELETE(_: unknown, { params }: Params) {
   try {
     const { id } = await params;
 
-    const deletedTicket = await prisma.ticket.delete({
+    await prisma.ticket.delete({
       where: { id },
     });
 
     return NextResponse.json(
-      { message: "Ticket deleted successfully", deletedTicket },
+      { message: "Ticket deleted successfully" },
       { status: 200 }
     );
   } catch (error: unknown) {

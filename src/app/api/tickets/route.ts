@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     const body: Ticket = await req.json();
     const { title, description, assignedTo, status } = ticketSchema.parse(body);
 
-    const newTicket = await prisma.ticket.create({
+    await prisma.ticket.create({
       data: {
         title,
         description,
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({ ticket: newTicket }, { status: 201 });
+    return NextResponse.json({ message: "Ticket Created" }, { status: 201 });
   } catch (error: unknown) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.errors }, { status: 400 });
